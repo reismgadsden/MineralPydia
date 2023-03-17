@@ -27,8 +27,9 @@ IF "%1"=="-p" (
 
 :: runs in sequence
 IF "%1"=="-r" (
-    start /w python MineralPydiaCrawl.py
-    start /w python MineralPydiaImageWrangle.py
+    activate MineralPydia
+    start /w python ./MineralPydiaCrawl.py
+    start /w python ./MineralPydiaImageWrangle.py
     GOTO :EOF
 )
 

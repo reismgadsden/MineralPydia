@@ -33,6 +33,8 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import NoSuchElementException
 
+import psutil
+
 
 """
 ENVIRONMENT VARIABLES
@@ -43,6 +45,7 @@ NUM_PAGES - The number of pages to gather from. If the value is "*" then the max
 """
 OUTPUT = None
 NUM_PAGES = "*"
+RAM_USAGE_CAP = 60.0
 
 
 # class MineralPydiaCrawl
@@ -201,8 +204,31 @@ class MineralPydiaCrawl:
         # gets the mineral info for each url collected
         index = 1
         for url in self._urls:
-            # t1 = threading.Thread(target=self._fill_dict, args=(url,))
-            # t1.start()
+
+            # if ram usage exceeds cap:
+            # * kill all firefox processes
+            # * kill all geckodriver processes
+            # * reinitialize the driver
+            # this will free memory being used by Selenium allowing, trading off a little time
+            ram_used = psutil.virtual_memory()[2]
+            if ram_used >= RAM_USAGE_CAP:
+                os.system("tskill firefox")
+                os.system("tskill geckodriver")
+
+                # set up the Firefox profile
+                profile = webdriver.FirefoxProfile()
+                profile.set_preference("dom.disable_open_during_load", False)
+
+                # define the executable location for Firefox (this maybe commented out if it is throwing errors)
+                options = Options()
+                options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe'
+
+                # hide Selenium window
+                options.add_argument("--headless")
+
+                # create the webdriver object with given profile and options
+                self._driver = webdriver.Firefox(firefox_profile=profile, options=options)
+
             self._fill_dict(url)
 
             # progress bar to make us feel better
