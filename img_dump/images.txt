@@ -1,0 +1,11 @@
+Hello.
+
+You are probably wondering why this is here.
+
+Git unfortunately does not include a way to push empty directories, which is unfortunate because I wanted a default directory for images to be downloaded to to be included.
+
+But obviously it would be silly to push thousands of images to this repo.
+
+So that is why this is here.
+
+Anyway here is something really cool: https://www.youtube.com/watch?v=dQw4w9WgXcQ
