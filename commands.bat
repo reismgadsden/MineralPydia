@@ -1,7 +1,7 @@
 :: batch script just to improve qol
 
 :: disable echo of course
-::@ECHO OFF
+@ECHO OFF
 
 
 :: clears all log files
