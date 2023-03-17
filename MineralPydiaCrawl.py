@@ -82,12 +82,12 @@ class MineralPydiaCrawl:
         """
 
         # sanitize outfile input if it is not left empty
-        if outfile is not None:
+        if not (outfile is None):
 
             # verifies that the outfile is csv format
             # also verifies that the path is a valid one
             try:
-                if outfile.strip()[-3:] is not "csv":
+                if not(outfile.strip()[-3:] == "csv"):
                     raise OSError
 
                 with open(outfile, "w") as file:
@@ -129,6 +129,8 @@ class MineralPydiaCrawl:
         else:
             self._log("Invalid value for number of pages, exiting crawl.", -1)
 
+        print("Initializing Crawl...")
+
         # log the number of pages to be crawled and the output file path
         self._log(
             "Initializing crawl with " + str(num_page)
@@ -143,6 +145,9 @@ class MineralPydiaCrawl:
         # define the executable location for Firefox (this maybe commented out if it is throwing errors)
         options = Options()
         options.binary_location = r'C:\Program Files\Mozilla Firefox\firefox.exe'
+
+        # hide Selenium window
+        options.add_argument("--headless")
 
         # create the webdriver object with given profile and options
         self._driver = webdriver.Firefox(firefox_profile=profile, options=options)
@@ -167,6 +172,14 @@ class MineralPydiaCrawl:
         # iterate over the number of pages, this can be down with range due to the format of the page url(s)
         for i in range(1, self._num_page + 1):
 
+            # progress bar to make us feel better
+            os.system("cls")
+            size = round(50 * (i / self._num_page))
+            print(
+                "Accessing page " + str(i) + " out of " + str(self._num_page)
+                + "\n\nProgress:\t| " + '█' * size + ' ' * (50 - size) + " |"
+            )
+
             # get the ith page
             page_url = self._base_url + "?page=" + str(i)
 
@@ -186,8 +199,21 @@ class MineralPydiaCrawl:
             self._urls += [u.get_attribute("href") for u in urls]
 
         # gets the mineral info for each url collected
+        index = 1
         for url in self._urls:
+            # t1 = threading.Thread(target=self._fill_dict, args=(url,))
+            # t1.start()
             self._fill_dict(url)
+
+            # progress bar to make us feel better
+            os.system('cls')
+            size = round(50 * (index / len(self._urls)))
+            print(
+                "Accessing mineral " + str(index) + " out of " + str(len(self._urls))
+                + "\n\nProgress:\t| " + '█' * size + ' ' * (50 - size) + " |"
+            )
+
+            index += 1
 
         # fills the csv with all mineral data
         self._fill_csv()
@@ -246,6 +272,10 @@ class MineralPydiaCrawl:
                 .find_element_by_xpath("//dt[contains(text(), 'Hardness')]/following-sibling::dd/span")\
                 .get_attribute("innerText")
 
+            pattern = re.compile("^[0-9]+(\\.[0-9]+)*(-[0-9]+(\\.[0-9]+)*)*$")
+            if re.fullmatch(pattern, hardness.replace("\xa0", "")) is None:
+                raise NoSuchElementException
+
         # if one to elements are not present return to go to the next url, log that the mineral had insufficient data
         except NoSuchElementException:
             self._log("The crawler encountered a page missing required information for the following mineral: " + name)
@@ -279,7 +309,12 @@ class MineralPydiaCrawl:
         mineral_info["color"] = color.replace("\xa0", "")
         mineral_info["streak"] = streak.replace("\xa0", "")
         mineral_info["class"] = class_type.replace("\xa0", "")
-        mineral_info["fracture"] = fracture.replace("\xa0", "")
+
+        if fracture is None:
+            mineral_info["fracture"] = None
+        else:
+            mineral_info["fracture"] = fracture.replace("\xa0", "")
+
         mineral_info["images"] = img_urls
 
         # trick to get around some issues with extracting string from generator

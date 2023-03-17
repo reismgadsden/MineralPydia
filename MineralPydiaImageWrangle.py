@@ -15,9 +15,6 @@ import pandas as pd
 from datetime import datetime
 import os
 
-# used for loading
-import threading
-import time
 
 """
 ENVIRONMENT VARIABLES.
@@ -72,27 +69,15 @@ def metal_pydia_image_wrangler(csv_path, img_dump_path):
             log("Attempting to fetch the following:\n" + "URL: " + uri + "\n" + "Filename: " + filename)
 
             # start download in new thread to allow command line spinning wheel
-            t1 = threading.Thread(target=urllib.request.urlretrieve, args=(uri, img_dump_path + "/" + filename))
-            t1.start()
+            urllib.request.urlretrieve(uri, img_dump_path + "/" + filename)
 
-            # creates a spinning wheel in the command prompt, makes waiting less depressing
-            val = 0
-            out = "Downloading image " + str(index) + " out of " + str(len(df)) + ": "
-            while t1.is_alive():
-                val = val % 4
-                os.system('cls')
-
-                if val == 0:
-                    print(out + "|")
-                elif val == 1:
-                    print(out + "/")
-                elif val == 2:
-                    print(out + "-")
-                else:
-                    print(out + "\\")
-
-                val += 1
-                time.sleep(0.1)
+            # progress bar to make us feel better
+            os.system("cls")
+            size = round(50 * (index / len(df)))
+            print(
+                "Download image " + str(index) + " out of " + str(len(df))
+                + "\n\nProgress:\t| " + '█' * size + ' ' * (50 - size) + " |"
+            )
 
             log(
                 "Image " + filename + " downloaded successfully to the following path: "
