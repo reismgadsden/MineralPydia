@@ -444,7 +444,7 @@ class MineralPydiaCrawl:
         """
 
         # append to the log
-        with open("./MetalPydiaCrawl.log", 'a') as file:
+        with open("./MineralPydiaCrawl.log", 'a') as file:
 
             # if the driver has not been initialized yet, we do not want to include a url
             if self._driver is None:

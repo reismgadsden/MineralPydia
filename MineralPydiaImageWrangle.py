@@ -27,7 +27,7 @@ IMG_DUMP_PATH = "./img_dump"
 
 
 # downloads the images
-def metal_pydia_image_wrangler(csv_path, img_dump_path):
+def mineral_pydia_image_wrangler(csv_path, img_dump_path):
     """
     metal_pydia_image_wrangler
 
@@ -105,7 +105,7 @@ def log(log_string, exit_code=None):
     """
 
     # append to log
-    with open("MetalPydiaImageWrangle.log", "a") as file:
+    with open("MineralPydiaImageWrangle.log", "a") as file:
 
         # log a string with no exit code
         file.write(
@@ -130,7 +130,7 @@ def main():
 
     Initializes the downloads.
     """
-    metal_pydia_image_wrangler(CSV_PATH, IMG_DUMP_PATH)
+    mineral_pydia_image_wrangler(CSV_PATH, IMG_DUMP_PATH)
 
 
 if __name__ == "__main__":
