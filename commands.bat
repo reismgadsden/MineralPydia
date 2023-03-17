@@ -1,7 +1,7 @@
 :: batch script just to improve qol
 
 :: disable echo of course
-@ECHO OFF
+::@ECHO OFF
 
 
 :: clears all log files
@@ -25,7 +25,7 @@ IF "%1"=="-p" (
 )
 
 :: runs in sequence
-IF "%1"=="-r"(
+IF "%1"=="-r" (
     python MineralPydiaCrawl.py
     python MineralPydiaImageWrangle.py
     GOTO :EOF

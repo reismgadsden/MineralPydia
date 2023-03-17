@@ -42,23 +42,7 @@ NUM_PAGES - The number of pages to gather from. If the value is "*" then the max
             All other values must be an integer.
 """
 OUTPUT = None
-NUM_PAGES = "*"
-
-
-def main():
-    """
-    main
-
-    Initializes the crawl with given environment variables.
-    """
-    MineralPydiaCrawl(NUM_PAGES, OUTPUT)
-
-
-if __name__ == "__main__":
-    """
-    Executes the main method if it is not being imported
-    """
-    main()
+NUM_PAGES = 1
 
 
 # class MineralPydiaCrawl
@@ -421,3 +405,19 @@ class MineralPydiaCrawl:
                 exit(exit_code)
 
             file.close()
+
+
+def main():
+    """
+    main
+
+    Initializes the crawl with given environment variables.
+    """
+    MineralPydiaCrawl(NUM_PAGES, OUTPUT)
+
+
+if __name__ == "__main__":
+    """
+    Executes the main method if it is not being imported
+    """
+    main()

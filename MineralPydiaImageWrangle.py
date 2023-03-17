@@ -26,22 +26,6 @@ CSV_PATH = "./MineralPydiaCrawlData.csv"
 IMG_DUMP_PATH = "./img_dump"
 
 
-def main():
-    """
-    main
-
-    Initializes the downloads.
-    """
-    metal_pydia_image_wrangler(CSV_PATH, IMG_DUMP_PATH)
-
-
-if __name__ == "__main__":
-    """
-    Executes main if not being imported.
-    """
-    main()
-
-
 # downloads the images
 def metal_pydia_image_wrangler(csv_path, img_dump_path):
     """
@@ -125,3 +109,19 @@ def log(log_string, exit_code=None):
             exit(exit_code)
 
         file.close()
+
+
+def main():
+    """
+    main
+
+    Initializes the downloads.
+    """
+    metal_pydia_image_wrangler(CSV_PATH, IMG_DUMP_PATH)
+
+
+if __name__ == "__main__":
+    """
+    Executes main if not being imported.
+    """
+    main()
