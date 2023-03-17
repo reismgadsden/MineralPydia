@@ -1,0 +1,48 @@
+[2023-03-17T01:49:05.434371]> Initializing crawl with 1 number of pages. Output file will be found at the following path: D:\Users\Reis\Documents\Reis\PersonalProjects\MineralPydia\MineralPydiaCrawlData.csv
+[2023-03-17T01:49:12.630197 @ https://www.dakotamatrix.com/mineralpedia?page=1]> Crawler proceeds to page #1
+[2023-03-17T01:49:13.640663 @ https://www.dakotamatrix.com/mineralpedia/4751/acanthite]> Crawler is accessing entry page for the following mineral: acanthite
+[2023-03-17T01:49:13.913500 @ https://www.dakotamatrix.com/mineralpedia/4751/acanthite]> Crawler has collected data for the following mineral
+	Name: acanthite
+	Number of Image URIs: 61
+[2023-03-17T01:49:14.255965 @ https://www.dakotamatrix.com/mineralpedia/4752/acetamide]> Crawler is accessing entry page for the following mineral: acetamide
+[2023-03-17T01:49:14.258956 @ https://www.dakotamatrix.com/mineralpedia/4752/acetamide]> The crawler encountered a page missing required information for the following mineral: acetamide
+[2023-03-17T01:49:14.976558 @ https://www.dakotamatrix.com/mineralpedia/4939/adamite]> Crawler is accessing entry page for the following mineral: adamite
+[2023-03-17T01:49:15.251429 @ https://www.dakotamatrix.com/mineralpedia/4939/adamite]> Crawler has collected data for the following mineral
+	Name: adamite
+	Number of Image URIs: 47
+[2023-03-17T01:49:15.614679 @ https://www.dakotamatrix.com/mineralpedia/8678/adamsite-y]> Crawler is accessing entry page for the following mineral: adamsite-y
+[2023-03-17T01:49:15.674517 @ https://www.dakotamatrix.com/mineralpedia/8678/adamsite-y]> Crawler has collected data for the following mineral
+	Name: adamsite-y
+	Number of Image URIs: 3
+[2023-03-17T01:49:16.153755 @ https://www.dakotamatrix.com/mineralpedia/9920/adranosite-fe]> Crawler is accessing entry page for the following mineral: adranosite-fe
+[2023-03-17T01:49:16.159738 @ https://www.dakotamatrix.com/mineralpedia/9920/adranosite-fe]> The crawler encountered a page missing required information for the following mineral: adranosite-fe
+[2023-03-17T01:49:16.567294 @ https://www.dakotamatrix.com/mineralpedia/5030/aegirine]> Crawler is accessing entry page for the following mineral: aegirine
+[2023-03-17T01:49:16.637131 @ https://www.dakotamatrix.com/mineralpedia/5030/aegirine]> Crawler has collected data for the following mineral
+	Name: aegirine
+	Number of Image URIs: 5
+[2023-03-17T01:49:16.642117 @ https://www.dakotamatrix.com/mineralpedia/5030/aegirine]> Resultant data has been succesfully written to the following path: D:\Users\Reis\Documents\Reis\PersonalProjects\MineralPydia\MineralPydiaCrawlData.csv
+[2023-03-17T01:49:17.297420]> The program exited with exit code: 0
+[2023-03-17T01:53:44.794885]> Initializing crawl with 1 number of pages. Output file will be found at the following path: D:\Users\Reis\Documents\Reis\PersonalProjects\MineralPydia\MineralPydiaCrawlData.csv
+[2023-03-17T01:53:52.108000 @ https://www.dakotamatrix.com/mineralpedia?page=1]> Crawler proceeds to page #1
+[2023-03-17T01:53:53.824948 @ https://www.dakotamatrix.com/mineralpedia/4751/acanthite]> Crawler is accessing entry page for the following mineral: acanthite
+[2023-03-17T01:53:54.095516 @ https://www.dakotamatrix.com/mineralpedia/4751/acanthite]> Crawler has collected data for the following mineral
+	Name: acanthite
+	Number of Image URIs: 61
+[2023-03-17T01:53:54.519762 @ https://www.dakotamatrix.com/mineralpedia/4752/acetamide]> Crawler is accessing entry page for the following mineral: acetamide
+[2023-03-17T01:53:54.523780 @ https://www.dakotamatrix.com/mineralpedia/4752/acetamide]> The crawler encountered a page missing required information for the following mineral: acetamide
+[2023-03-17T01:53:55.218434 @ https://www.dakotamatrix.com/mineralpedia/4939/adamite]> Crawler is accessing entry page for the following mineral: adamite
+[2023-03-17T01:53:55.485593 @ https://www.dakotamatrix.com/mineralpedia/4939/adamite]> Crawler has collected data for the following mineral
+	Name: adamite
+	Number of Image URIs: 47
+[2023-03-17T01:53:55.789320 @ https://www.dakotamatrix.com/mineralpedia/8678/adamsite-y]> Crawler is accessing entry page for the following mineral: adamsite-y
+[2023-03-17T01:53:55.866115 @ https://www.dakotamatrix.com/mineralpedia/8678/adamsite-y]> Crawler has collected data for the following mineral
+	Name: adamsite-y
+	Number of Image URIs: 3
+[2023-03-17T01:53:56.173730 @ https://www.dakotamatrix.com/mineralpedia/9920/adranosite-fe]> Crawler is accessing entry page for the following mineral: adranosite-fe
+[2023-03-17T01:53:56.176746 @ https://www.dakotamatrix.com/mineralpedia/9920/adranosite-fe]> The crawler encountered a page missing required information for the following mineral: adranosite-fe
+[2023-03-17T01:53:56.601589 @ https://www.dakotamatrix.com/mineralpedia/5030/aegirine]> Crawler is accessing entry page for the following mineral: aegirine
+[2023-03-17T01:53:56.660557 @ https://www.dakotamatrix.com/mineralpedia/5030/aegirine]> Crawler has collected data for the following mineral
+	Name: aegirine
+	Number of Image URIs: 5
+[2023-03-17T01:53:56.665543 @ https://www.dakotamatrix.com/mineralpedia/5030/aegirine]> Resultant data has been succesfully written to the following path: D:\Users\Reis\Documents\Reis\PersonalProjects\MineralPydia\MineralPydiaCrawlData.csv
+[2023-03-17T01:53:57.312843]> The program exited with exit code: 0

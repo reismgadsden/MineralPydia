@@ -14,11 +14,18 @@ It will collect all available information for each mineral including:
 author: Reis Mercer Gadsden
 """
 
+# logging usage
 from datetime import datetime
+
+# user input validation
 import re
 import os
+
+# data manipulation and storage
 import pandas as pd
 import numpy as np
+
+# selenium imports
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -173,6 +180,7 @@ class MineralPydiaCrawl:
         fractures = []
         hardnesses = []
         images = []
+        filenames = []
 
         for mineral in self._mineral_dict:
             for url in self._mineral_dict[mineral]["images"]:
@@ -184,6 +192,7 @@ class MineralPydiaCrawl:
                 fractures.append(self._mineral_dict[mineral]["fracture"])
                 hardnesses.append(self._mineral_dict[mineral]["hardness"])
                 images.append(url)
+                filenames.append(url.split("/")[-1])
 
         dump = {
             "name": names,
@@ -193,7 +202,8 @@ class MineralPydiaCrawl:
             "class": classes,
             "fracture": fractures,
             "hardness": hardnesses,
-            "image_uri": images
+            "image_uri": images,
+            "image_name": filenames
         }
 
         df = pd.DataFrame.from_dict(dump)
@@ -207,23 +217,24 @@ class MineralPydiaCrawl:
 
     def _log(self, log_string, exit_code=None):
         with open("./MetalPydiaCrawl.log", 'a') as file:
-            if exit_code is not None:
-                file.write(
-                    "[" + datetime.now().isoformat() + "] > The program exited with exit code: " + str(exit_code)
-                )
-                file.close()
-                exit(exit_code)
 
             if self._driver is None:
                 file.write(
-                    "[" + datetime.now().isoformat() + "] > "
+                    "[" + datetime.now().isoformat() + "]> "
                     + log_string.strip().replace("\n", "\n\t") + "\n"
                 )
             else:
                 file.write(
-                    "[" + datetime.now().isoformat() + " @ "+ self._driver.current_url + "] > "
+                    "[" + datetime.now().isoformat() + " @ "+ self._driver.current_url + "]> "
                     + log_string.strip().replace("\n", "\n\t") + "\n"
                 )
+
+            if exit_code is not None:
+                file.write(
+                    "[" + datetime.now().isoformat() + "]> The program exited with exit code: " + str(exit_code) + "\n"
+                )
+                file.close()
+                exit(exit_code)
 
             file.close()
 
