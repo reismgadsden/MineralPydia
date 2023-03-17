@@ -42,7 +42,7 @@ NUM_PAGES - The number of pages to gather from. If the value is "*" then the max
             All other values must be an integer.
 """
 OUTPUT = None
-NUM_PAGES = 1
+NUM_PAGES = "*"
 
 
 # class MineralPydiaCrawl
@@ -222,26 +222,28 @@ class MineralPydiaCrawl:
 
             # gets the habit of the mineral
             # https://en.wikipedia.org/wiki/Crystal_habit
-            habit = self._driver.find_element_by_xpath("//dt[text()='Crystal Habit']/following-sibling::dd")\
+            habit = self._driver.find_element_by_xpath("//dt[contains(text(), 'Crystal Habit')]/following-sibling::dd")\
                 .get_attribute("innerText")
 
             # gets the color descriptor of the mineral
-            color = self._driver.find_element_by_xpath("//dt[text()='Color']/following-sibling::dd")\
+            color = self._driver.find_element_by_xpath("//dt[contains(text(), 'Color')]/following-sibling::dd")\
                 .get_attribute("innerText")
 
             # gets the streak descriptor of the mineral
             # the streak is the color of a crushed minerals powder
-            streak = self._driver.find_element_by_xpath("//dt[text()='Streak']/following-sibling::dd")\
+            streak = self._driver.find_element_by_xpath("//dt[contains(text(), 'Streak')]/following-sibling::dd")\
                 .get_attribute("innerText")
 
             # gets the class of mineral that it belongs to
             # https://en.wikipedia.org/wiki/Crystal_system
-            class_type = self._driver.find_element_by_xpath("//dt[text()='Crystal System']/following-sibling::dd")\
+            class_type = self._driver\
+                .find_element_by_xpath("//dt[contains(text(), 'Crystal System')]/following-sibling::dd")\
                 .get_attribute("innerText")
 
             # gets the hardness of mineral
             # https://en.wikipedia.org/wiki/Hardness
-            hardness = self._driver.find_element_by_xpath("//dt[text()='Hardness']/following-sibling::dd/span")\
+            hardness = self._driver\
+                .find_element_by_xpath("//dt[contains(text(), 'Hardness')]/following-sibling::dd/span")\
                 .get_attribute("innerText")
 
         # if one to elements are not present return to go to the next url, log that the mineral had insufficient data
@@ -390,7 +392,7 @@ class MineralPydiaCrawl:
                     + log_string.strip().replace("\n", "\n\t") + "\n"
                 )
             # if the driver has been initialized we can get the current url for more accurate logging
-            else:
+            elif exit_code is None:
                 file.write(
                     "[" + datetime.now().isoformat() + " @ " + self._driver.current_url + "]> "
                     + log_string.strip().replace("\n", "\n\t") + "\n"

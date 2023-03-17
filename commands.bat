@@ -8,6 +8,7 @@
 IF "%1"=="-c" (
     break>MetalPydiaCrawl.log
     break>MetalPydiaImageWrangle.log
+    ECHO Logs cleared.
     GOTO :EOF
 )
 
@@ -19,15 +20,15 @@ IF "%1"=="-p" (
         git add .
         git commit -m %2
         git push -u origin main
-        ECHO Changes have been pushed
+        ECHO Changes have been pushed.
         GOTO :EOF
     )
 )
 
 :: runs in sequence
 IF "%1"=="-r" (
-    python MineralPydiaCrawl.py
-    python MineralPydiaImageWrangle.py
+    start /w python MineralPydiaCrawl.py
+    start /w python MineralPydiaImageWrangle.py
     GOTO :EOF
 )
 
@@ -36,8 +37,8 @@ IF "%1"=="-r" (
 :ARGERR
 ECHO A valid flag must be provided
 ECHO Valid Flags:
-ECHO    -c: Clears log files
-ECHO    -p "<commit message>": Pushes to main branch as long as commit message is also provided
+ECHO    -c: Clears log files.
+ECHO    -p "<commit message>": Pushes to main branch as long as commit message is also provided.
 GOTO :EOF
 
 

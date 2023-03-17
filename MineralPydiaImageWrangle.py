@@ -15,6 +15,9 @@ import pandas as pd
 from datetime import datetime
 import os
 
+# used for loading
+import threading
+import time
 
 """
 ENVIRONMENT VARIABLES.
@@ -61,16 +64,41 @@ def metal_pydia_image_wrangler(csv_path, img_dump_path):
         img_dump_path = "./img_dump"
 
     # create a subset of the data only containing the image uri and name and loop over it
+    index = 1
     for uri, filename in df[["image_uri", "image_name"]].itertuples(index=False):
 
         # attempt to download the image, log the attempt and log if it is successfully
         try:
             log("Attempting to fetch the following:\n" + "URL: " + uri + "\n" + "Filename: " + filename)
-            urllib.request.urlretrieve(uri, img_dump_path + "/" + filename)
+
+            # start download in new thread to allow command line spinning wheel
+            t1 = threading.Thread(target=urllib.request.urlretrieve, args=(uri, img_dump_path + "/" + filename))
+            t1.start()
+
+            # creates a spinning wheel in the command prompt, makes waiting less depressing
+            val = 0
+            out = "Downloading image " + str(index) + " out of " + str(len(df)) + ": "
+            while t1.is_alive():
+                val = val % 4
+                os.system('cls')
+
+                if val == 0:
+                    print(out + "|")
+                elif val == 1:
+                    print(out + "/")
+                elif val == 2:
+                    print(out + "-")
+                else:
+                    print(out + "\\")
+
+                val += 1
+                time.sleep(0.1)
+
             log(
                 "Image " + filename + " downloaded successfully to the following path: "
                 + os.path.abspath(img_dump_path + "/" + filename)
             )
+            index += 1
 
         # if an error is caught, log it and EXIT
         except URLError as ue:
